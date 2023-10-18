@@ -1,10 +1,12 @@
 import express from "express";
 import cors from "cors";
-import cookieParser from "cookie-parser";
 import "./loadEnvironment.js";
 import { connectToMongoDB } from "./db/conn.js";
+import passport from "passport";
+import "./config/passport.js";
+import users from "./routes/user.js";
 
-const { PORT } = process.env || 5050;
+const PORT = process.env.PORT || 5050;
 
 const app = express();
 
@@ -16,10 +18,19 @@ app.use(
   })
 );
 
-app.use(cookieParser());
 app.use(express.json());
+app.use(express.urlencoded({ extended: true })); // handle form data
 
 connectToMongoDB();
+
+app.use(passport.initialize());
+
+app.use("/user", users);
+
+app.use((err, req, res, next) => {
+  console.error(err);
+  res.status(500).json({ message: "Internal Server Error" });
+});
 
 app.listen(PORT, () => {
   console.log(`Server running on port: ${PORT}`);
