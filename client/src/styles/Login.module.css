@@ -5,7 +5,7 @@
 }
 
 .formGreet {
-    color: rgba(0, 0, 0, 0.65);
+  color: rgba(0, 0, 0, 0.65);
 }
 .formTitle {
   font-size: 30px;
@@ -82,7 +82,7 @@
 .formBtn {
   width: 100%;
   height: 45px;
-  background: #A2C692;
+  background: #a2c692;
   border: none;
   outline: none;
   border-radius: 6px;
@@ -102,11 +102,16 @@
 }
 
 .loginRegister p .registerLink {
-  color: #A2C692;
+  color: #a2c692;
   text-decoration: none;
   font-weight: 600;
 }
 
 .loginRegister p .registerLink:hover {
   text-decoration: underline;
+}
+
+.message {
+  text-align: center;
+  color: rgba(0, 0, 0, 0.65);
 }

@@ -68,8 +68,8 @@ export const login = (req, res, next) => {
       res.cookie("jwt", token, {
         httpOnly: true,
         // add options for production
-      })
-      return res.json({ user, token });
+      });
+      return res.json({ username: user.username, token });
     });
   })(req, res, next);
 };

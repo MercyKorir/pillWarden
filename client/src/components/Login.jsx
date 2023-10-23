@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 import styles from "../styles/Login.module.css";
 import EmailIcon from "@mui/icons-material/Email";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
@@ -21,8 +22,35 @@ const Login = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    try {
+      const response = await axios.post(
+        "http://localhost:5050/user/login",
+        loginData,
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+          withCredentials: true,
+        }
+      );
+
+      if (response.status === 200) {
+        const { username } = response.data;
+        setMessage(`Signed in successfully. Welcome ${username}!`);
+        setLoginData({
+          email: "",
+          password: "",
+        });
+      } else {
+        setMessage("Login failed. Check your email and password.");
+      }
+    } catch (err) {
+      setMessage("Authentication failed. Please check your credentials.");
+      console.error("Login error: ", err);
+    }
   };
   return (
     <div className={styles.loginForm}>
@@ -84,7 +112,7 @@ const Login = () => {
             </Link>
           </p>
         </div>
-        <p>{message}</p>
+        <p className={styles.message}>{message}</p>
       </form>
     </div>
   );
