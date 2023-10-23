@@ -3,6 +3,7 @@ import cors from "cors";
 import "./loadEnvironment.js";
 import { connectToMongoDB } from "./db/conn.js";
 import passport from "passport";
+import cookieParser from "cookie-parser";
 import "./config/passport.js";
 import users from "./routes/user.js";
 
@@ -18,6 +19,7 @@ app.use(
   })
 );
 
+app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true })); // handle form data
 

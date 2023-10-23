@@ -65,6 +65,10 @@ export const login = (req, res, next) => {
       const token = jwt.sign({ id: user._id }, JWT_SECRET, {
         expiresIn: "24h",
       });
+      res.cookie("jwt", token, {
+        httpOnly: true,
+        // add options for production
+      })
       return res.json({ user, token });
     });
   })(req, res, next);

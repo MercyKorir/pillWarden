@@ -1,0 +1,46 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 60px;
+  padding-top: 30px;
+}
+.rightNav {
+  display: flex;
+  flex-direction: row;
+  gap: 70px;
+  align-items: center;
+}
+.navContainer {
+  display: flex;
+  flex-direction: row;
+  gap: 40px;
+}
+
+.menuItem {
+    font-size: 20px;
+    color: cadetblue;
+    font-weight: 370;
+    transition: font-weight 0.4s;
+}
+
+.menuItem:hover {
+    font-weight: 380;
+}
+
+.authBtn {
+  border-radius: 20px;
+  border: none;
+  min-width: 110px;
+  min-height: 40px;
+  height: fit-content;
+  width: fit-content;
+  font-size: 17px;
+  padding: 11px 20px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s;
+}
+.authBtn:hover {
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+}
