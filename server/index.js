@@ -6,6 +6,7 @@ import passport from "passport";
 import cookieParser from "cookie-parser";
 import "./config/passport.js";
 import users from "./routes/user.js";
+import medications from "./routes/medication.js";
 
 const PORT = process.env.PORT || 5050;
 
@@ -28,6 +29,7 @@ connectToMongoDB();
 app.use(passport.initialize());
 
 app.use("/user", users);
+app.use("/medication", medications);
 
 app.use((err, req, res, next) => {
   console.error(err);

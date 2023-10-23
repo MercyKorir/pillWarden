@@ -1,11 +1,31 @@
-import passport from "passport";
+import jwt from "jsonwebtoken";
+import User from "../models/UserModel.js";
+
+const { JWT_SECRET } = process.env;
 
 export const authenticateJWT = (req, res, next) => {
-  passport.authenticate("jwt", { session: false }, (err, user) => {
-    if (err || !user) {
-      return res.status(401).json({ message: "Unauthorized" });
+  const token = req.cookies.jwt;
+
+  if (!token) {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
+  jwt.verify(token, JWT_SECRET, async (err, decoded) => {
+    if (err) {
+      return res.status(401).json({ message: "Authentication failed" });
     }
-    req.user = user;
-    return next();
-  })(req, res, next);
+    try {
+      const user = await User.findById(decoded.id);
+      if (user) {
+        req.user = user;
+        // console.log("User Verified Successfully")
+        return next();
+      } else {
+        return res.status(401).json({ message: "Authentication failed" });
+      }
+    } catch (err) {
+      console.error("Error verifying user:", err);
+      return res.status(401).json({ message: "Authentication failed" });
+    }
+  });
 };
