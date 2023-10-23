@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import styles from "../styles/Login.module.css";
+import styles from "../styles/authForm.module.css";
 import EmailIcon from "@mui/icons-material/Email";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";

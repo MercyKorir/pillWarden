@@ -38,7 +38,7 @@ export const signup = async (req, res) => {
         const token = jwt.sign({ id: newUser._id }, JWT_SECRET, {
           expiresIn: "1h",
         });
-        res.status(200).json({ user: newUser, token });
+        res.status(201).json({ username: newUser.username, token });
       });
     });
   } catch (err) {
