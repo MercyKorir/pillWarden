@@ -40,10 +40,11 @@ The PillWarden App is a simple application that helps users manage their medicat
 
 1. Create a `.env` file in the server directory with the following environment variables:
 
-```env```
+```env
 DB_URI=your-mongodb-connection-uri
 JWT_SECRET=your-secret-key
-# Add other API keys for WhatsApp, SMS, etc.
+// Add other API keys for WhatsApp, SMS, etc.
+```
 
 2. Configure your email, SMS, and other API services as per your requirements
 
