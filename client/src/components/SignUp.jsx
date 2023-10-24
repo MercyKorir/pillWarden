@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import styles from "../styles/authForm.module.css";
+import signUpStyles from "../styles/SignUp.module.css";
 import EmailIcon from "@mui/icons-material/Email";
 import VisibilityOffIcon from "@mui/icons-material/VisibilityOff";
 import VisibilityIcon from "@mui/icons-material/Visibility";
@@ -160,7 +161,9 @@ const SignUp = () => {
             </Link>
           </p>
         </div>
-        <p className={styles.message}>{message}</p>
+        <p className={`${styles.message} ${signUpStyles.signUpMessage}`}>
+          {message}
+        </p>
       </form>
     </div>
   );
