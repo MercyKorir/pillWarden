@@ -1,9 +1,10 @@
 import express from "express";
 import { body } from "express-validator";
-import { login, signup } from "../controllers/authController.js";
+import { login, signup, logout } from "../controllers/authController.js";
 
 const router = express.Router();
 
+// Register a new user
 router.post(
   "/signup",
   [
@@ -18,6 +19,7 @@ router.post(
   signup
 );
 
+// Login user
 router.post(
   "/login",
   [
@@ -30,5 +32,8 @@ router.post(
   ],
   login
 );
+
+// Logout user
+router.post("/logout", logout);
 
 export default router;

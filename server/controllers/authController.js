@@ -6,6 +6,7 @@ import { validationResult } from "express-validator";
 
 const { JWT_SECRET } = process.env;
 
+// Register a new user
 export const signup = async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {
@@ -47,6 +48,7 @@ export const signup = async (req, res) => {
   }
 };
 
+// Login user
 export const login = (req, res, next) => {
   const errors = validationResult(req);
 
@@ -72,4 +74,10 @@ export const login = (req, res, next) => {
       return res.json({ username: user.username, token });
     });
   })(req, res, next);
+};
+
+// Logout user
+export const logout = (req, res) => {
+  res.clearCookie("jwt");
+  res.json({ message: "Logged out successfully" });
 };

@@ -7,6 +7,7 @@ import cookieParser from "cookie-parser";
 import "./config/passport.js";
 import users from "./routes/user.js";
 import medications from "./routes/medication.js";
+import reminders from "./routes/reminder.js";
 
 const PORT = process.env.PORT || 5050;
 
@@ -30,6 +31,7 @@ app.use(passport.initialize());
 
 app.use("/user", users);
 app.use("/medication", medications);
+app.use("/reminder", reminders);
 
 app.use((err, req, res, next) => {
   console.error(err);
