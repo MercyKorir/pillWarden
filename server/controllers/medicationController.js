@@ -1,7 +1,15 @@
 import Medication from "../models/MedicationModel.js";
+import { validationResult } from "express-validator";
 
 // Create medication
 export const createMedication = async (req, res) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return res
+      .status(400)
+      .json({ message: "All fields are required", errors: errors.array() });
+  }
+
   try {
     const { name, description, dosage } = req.body;
     const user = req.user._id;

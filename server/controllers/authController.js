@@ -66,7 +66,7 @@ export const login = (req, res, next) => {
         expiresIn: "24h",
       });
       res.cookie("jwt", token, {
-        httpOnly: true,
+        // httpOnly: true,
         // add options for production
       });
       return res.json({ username: user.username, token });

@@ -3,6 +3,8 @@ import Header from "./components/Header";
 import Login from "./components/Login";
 import AuthWrapper from "./components/AuthWrapper";
 import SignUp from "./components/SignUp";
+import CreateMedication from "./components/CreateMedication";
+import ProtectedRouteWrapper from "./components/ProtectedRouteWrapper";
 
 function App() {
   return (
@@ -23,6 +25,14 @@ function App() {
             <AuthWrapper>
               <SignUp />
             </AuthWrapper>
+          }
+        />
+        <Route
+          path="/create-medication"
+          element={
+            <ProtectedRouteWrapper>
+              <CreateMedication />
+            </ProtectedRouteWrapper>
           }
         />
       </Routes>
