@@ -1,31 +1,42 @@
-import React, { useState } from "react";
-import { Navigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
+import axios from "axios";
 import LoginPromptModal from "./LoginPromptModal";
 
 const ProtectedRouteWrapper = ({ children }) => {
-  const token = Cookies.get("jwt");
-  const isAuthenticated = !!token;
-  const [showModal, setShowModal] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const token = Cookies.get("jwt");
+        if (!token) return;
+
+        const response = await axios.get(`http://localhost:5050/user/verify`, {
+          headers: {Authorization: `Bearer ${token}`},
+        });
+        if (response.data.isAuthenticated) {
+          setIsLoggedIn(true);
+        }
+      } catch (error) {
+        console.error("Authentication check failed: ", error);
+        setIsLoggedIn(false);
+      }
+    };
+
+    checkAuth();
+  }, []);
 
   const handleLoginClick = () => {
-    return <Navigate to="/login" />;
+    navigate("/login");
   };
-
-  const closeModal = () => {
-    setShowModal(false);
-  };
-  return isAuthenticated ? (
+  return isLoggedIn ? (
     <>{children}</>
   ) : (
     <>
-      {showModal && (
-        <LoginPromptModal
-          onLoginClick={handleLoginClick}
-          onClose={closeModal}
-        />
-      )}
-      <button onClick={() => setShowModal(true)}>Continue</button>
+      <LoginPromptModal onLoginClick={handleLoginClick} />
     </>
   );
 };
