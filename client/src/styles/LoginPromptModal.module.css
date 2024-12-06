@@ -1,67 +1,77 @@
-.modal {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+.modalBox {
   position: fixed;
   top: 0;
-  left: 0;
-  z-index: 9999;
-  opacity: 0;
-  animation: slide-up 0.3s ease forwards, fade-out 0.3s ease forwards 2s;
+  right: 0;
+  background-color: white;
+  padding: 10px 0px 0px 0px;
+  /* display: none; */
+  border: 1px solid black; /* Add a border to the modal box */
+  animation: slide-in 0.5s forwards; /* Add an animation to slide in from the right */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  z-index: 999;
+}
+.modalBox.close {
+  animation: fade-out 0.5s forwards;
+}
+.closeBtn {
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-right: 20px;
 }
 
-@keyframes slide-up {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+.closeBtn:hover,
+.closeBtn:focus {
+  cursor: pointer;
+  color: black;
+  text-decoration: none;
+}
+.modal-text {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+.timer {
+  height: 10px;
+  background-color: #ff0000;
+  position: relative;
+  width: 100%;
+}
+
+.timer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  background-color: #f2f2f2;
+  animation: timer 5s linear;
 }
 
 @keyframes fade-out {
+  from {
+    opacity: 1;
+  }
   to {
     opacity: 0;
   }
 }
 
-.modalContent {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #fff;
-  padding: 2rem;
-  border-radius: 0.5rem;
-  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+@keyframes slide-in {
+  from {
+    transform: translateX(100%); /* Start offscreen to the right */
+  }
+  to {
+    transform: translateX(0); /* Slide in to the center */
+  }
 }
 
-.modalTitle {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 1rem;
-}
-
-.modalDescription {
-  font-size: 1.2rem;
-  text-align: center;
-  margin-bottom: 2rem;
-}
-
-.modalBtn {
-  background-color: #0077ff;
-  color: #fff;
-  font-size: 1.2rem;
-  font-weight: bold;
-  padding: 0.8rem 1.5rem;
-  border: none;
-  border-radius: 0.5rem;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.modalBtn:hover {
-  background-color: #005ae6;
+@keyframes timer {
+  0% {
+    width: 100%;
+  }
+  100% {
+    width: 0;
+  }
 }
