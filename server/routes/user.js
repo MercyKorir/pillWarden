@@ -1,6 +1,6 @@
 import express from "express";
 import { body } from "express-validator";
-import { login, signup, logout } from "../controllers/authController.js";
+import { login, signup, logout, verifyAuth, requestPasswordReset, resetPassword } from "../controllers/authController.js";
 
 const router = express.Router();
 
@@ -35,5 +35,14 @@ router.post(
 
 // Logout user
 router.post("/logout", logout);
+
+// Verify user
+router.get('/verify', verifyAuth);
+
+// Forgot Password
+router.post('/forgot-password', requestPasswordReset);
+
+// Reset Password
+router.post('/reset-password', resetPassword);
 
 export default router;

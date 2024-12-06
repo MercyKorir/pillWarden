@@ -37,7 +37,7 @@ const SignUp = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5050/user/signup",
+        `http://localhost:5050/user/signup`,
         signUpData,
         {
           headers: {

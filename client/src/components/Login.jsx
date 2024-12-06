@@ -27,7 +27,7 @@ const Login = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:5050/user/login",
+        `http://localhost:5050/user/login`,
         loginData,
         {
           headers: {

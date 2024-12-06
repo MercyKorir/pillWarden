@@ -5,6 +5,8 @@ import AuthWrapper from "./components/AuthWrapper";
 import SignUp from "./components/SignUp";
 import CreateMedication from "./components/CreateMedication";
 import ProtectedRouteWrapper from "./components/ProtectedRouteWrapper";
+import ForgotPassword from "./components/ForgotPassword";
+import ResetPassword from "./components/ResetPassword";
 
 function App() {
   return (
@@ -24,6 +26,22 @@ function App() {
           element={
             <AuthWrapper>
               <SignUp />
+            </AuthWrapper>
+          }
+        />
+        <Route
+          path="/forgot-password"
+          element={
+            <AuthWrapper>
+              <ForgotPassword />
+            </AuthWrapper>
+          }
+        />
+        <Route
+          path="/reset-password/:token"
+          element={
+            <AuthWrapper>
+              <ResetPassword />
             </AuthWrapper>
           }
         />
